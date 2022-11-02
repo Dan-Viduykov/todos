@@ -7,6 +7,7 @@ import SearchPanel from "@/components/SearchInput";
 import Filter from "@/components/Filter";
 import TodoList from "@/components/TodoList";
 import TodoListEmpty from "@/components/TodoListEmpty";
+import AddItemForm from "@/components/AddItemForm";
 
 import styles from "./Home.module.scss";
 
@@ -22,7 +23,12 @@ const Home: FC = () => {
                         <SearchPanel className={styles.searchInput} />
                         <Filter className={styles.filter} />
                     </div>
-                    { items.length ? <TodoList className={styles.todoList} todos={items} /> : <TodoListEmpty /> }
+                    {
+                        items.length ?
+                            <TodoList className={styles.todoList} todos={items} /> :
+                            <TodoListEmpty />
+                    }
+                    <AddItemForm className={styles.addForm} />
                 </main>
             </div>
         </div>

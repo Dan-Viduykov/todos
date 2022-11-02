@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ITodo, todoItemsState } from './types';
 
+const uniqid = require('uniqid')
 const initialState: todoItemsState = {
   items: [
     {
@@ -28,8 +29,13 @@ export const todoItemsSlice = createSlice({
   name: 'todoItems',
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<ITodo>) => {
-      state.items.push(action.payload);
+    addItem: (state, action: PayloadAction<string>) => {
+      state.items.push({
+        id: uniqid(),
+        label: action.payload,
+        done: false,
+        important: false, 
+      });
     },
     deleteItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.id !== action.payload)

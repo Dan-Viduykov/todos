@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    margin-right: 8px;
+    padding: 4px 12px;
+    flex-grow: 1;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.button {
+    padding: 4px 12px;
+    background: transparent;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
