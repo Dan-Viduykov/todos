@@ -1,0 +1,12 @@
+.list {
+    border: 1px solid gray;
+    border-radius: 16px;
+}
+
+.item {
+    padding: 4px 12px;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}

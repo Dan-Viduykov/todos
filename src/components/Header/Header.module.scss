@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.title {
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.info {
+    font-size: 1.2rem;
+    font-weight: 500;   
+    color: grey;
+}

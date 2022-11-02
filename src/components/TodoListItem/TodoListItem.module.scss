@@ -1,0 +1,27 @@
+.item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    border-bottom: 1px solid gray;
+}
+
+.button {
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    border: 1px solid red;
+    border-radius: 8px;
+    margin-right: 8px;
+
+    &:last-child {
+        margin-right: 0;    
+    }
+}
+
+.label {
+    cursor: pointer;
+    user-select: none;
+}
