@@ -40,23 +40,33 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./TodoListItem.module.scss";
+import { ITodo } from "@/store/reducers/todoItems/types";
+import { useActions } from "@/hooks/useActions";
 
 interface TodoListItemProps {
     className?: string;
+    todoItem: ITodo;
 }
 
-const TodoListItem: FC<PropsWithChildren<TodoListItemProps>> = ({ className, children }) => {
+const TodoListItem: FC<PropsWithChildren<TodoListItemProps>> = ({ className, todoItem, children }) => {
+    const { changeDoneItem, changeImportantItem, deleteItem } = useActions()
 
     const handleClickDelete = () => {
-
+        deleteItem(todoItem.id)
     }
     const handleClickImportand = () => {
-        
+        changeImportantItem(todoItem.id);
+    }
+    const handleClickLabel = () => {
+        changeDoneItem(todoItem.id);
     }
 
+    const classDone = todoItem.done ? styles.item_done : null;
+    const classImportant = todoItem.important ? styles.item_important : null;
+
     return (
-        <li className={`${styles.item} ${className}`}>
-            <p className={styles.label}>{children}</p>
+        <li className={`${styles.item} ${classDone} ${classImportant} ${className}`}>
+            <p className={styles.label} onClick={handleClickLabel}>{children}</p>
             <div className={styles.actions}>
                 <button
                     className={`${styles.button} ${styles.button_delete}`}

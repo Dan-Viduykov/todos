@@ -12,14 +12,14 @@ const initialState: todoItemsState = {
     {
       id: 'someid2',
       label: 'test2',
-      done: false,
+      done: true,
       important: false,
     },
     {
       id: 'someid3',
       label: 'test3',
       done: false,
-      important: false,
+      important: true,
     }
   ],
 }
@@ -35,15 +35,21 @@ export const todoItemsSlice = createSlice({
       state.items = state.items.filter(item => item.id !== action.payload)
     },
     changeDoneItem: (state, action: PayloadAction<string>) => {
-      
+      const idx = state.items.findIndex(item => item.id === action.payload);
+      state.items[idx].done = !state.items[idx].done;
     },
     changeImportantItem: (state, action: PayloadAction<string>) => {
-
+      const idx = state.items.findIndex(item => item.id === action.payload);
+      state.items[idx].important = !state.items[idx].important;
     }
   },
 })
 
 export const {
+  addItem,
+  deleteItem,
+  changeDoneItem,
+  changeImportantItem,
 } = todoItemsSlice.actions
 
 export const todoItemsReducer = todoItemsSlice.reducer;

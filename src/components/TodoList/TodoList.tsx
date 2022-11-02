@@ -58,19 +58,26 @@
 // } 
 
 import { FC } from "react";
-import { selecTodoItems } from "@/store/reducers/todoItems/selectors";
-import { useTypedSelector } from "@/hooks/useTypedSelector";
+import { ITodo } from "@/store/reducers/todoItems/types";
 import TodoListItem from "@/components/TodoListItem";
 import styles from "./TodoList.module.scss";
 
 interface TodoListProps {
     className?: string;
+    todos: ITodo[]
 }
 
-const TodoList: FC<TodoListProps> = ({ className }) => {
-    const { items } = useTypedSelector(selecTodoItems)
-    
-    const elements = items.map(item => <TodoListItem className={styles.item} key={item.id}>{item.label}</TodoListItem>)
+const TodoList: FC<TodoListProps> = ({ className, todos }) => {
+
+    const elements = todos.map(item => (
+        <TodoListItem
+            todoItem={item}
+            className={styles.item}
+            key={item.id}
+        >
+            {item.label}
+        </TodoListItem>
+    ))
 
     return (
         <ul className={`${styles.list} ${className}`}>
