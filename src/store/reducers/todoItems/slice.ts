@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ITodo, todoItemsState } from './types';
+import { todoItemsState } from './types';
 
 const uniqid = require('uniqid')
 const initialState: todoItemsState = {
