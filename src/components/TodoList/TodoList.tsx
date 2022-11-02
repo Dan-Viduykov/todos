@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { ITodo } from "@/store/reducers/todoItems/types";
+import { TFilter } from "@/store/reducers/filter/types";
 import { selectFilter } from "@/store/reducers/filter/selectors";
+import { selectSearch } from "@/store/reducers/search/selectors";
 import { useTypedSelector } from "@/hooks/useTypedSelector";
 import TodoListItem from "@/components/TodoListItem";
 import styles from "./TodoList.module.scss";
-import { selectSearch } from "@/store/reducers/search/selectors";
 
 interface TodoListProps {
     className?: string;
@@ -15,32 +16,37 @@ const TodoList: FC<TodoListProps> = ({ className, todos }) => {
     const { filterType } = useTypedSelector(selectFilter)
     const { query } = useTypedSelector(selectSearch);
 
-    const elements = todos
-        .filter(item => {
-            if (filterType === 'active') {
+    const filterOnType = (array: ITodo[], type: TFilter): ITodo[] => {
+        return array.filter(item => {
+            if (type === 'active') {
                 return item.done === false
-            } else if (filterType === 'done') {
+            } else if (type === 'done') {
                 return item.done
             }
 
             return true
         })
-        .filter(item => {
-            if (query) {
-                return item.label.trim().toLocaleLowerCase().slice(0, query.length) === query.trim().toLocaleLowerCase();
+    }
+
+    const filterOnSearchQuery = (array: ITodo[], search: string): ITodo[] => {
+        return array.filter(item => {
+            if (search) {
+                return item.label.trim().toLocaleLowerCase().slice(0, search.length) === search.trim().toLocaleLowerCase();
             }
 
             return true;
         })
-        .map(item => (
-            <TodoListItem
-                todoItem={item}
-                className={styles.item}
-                key={item.id}
-            >
-                {item.label}
-            </TodoListItem>
-        ))
+    }
+
+    const elements = filterOnSearchQuery(filterOnType(todos, filterType), query).map(item => (
+        <TodoListItem
+            todoItem={item}
+            className={styles.item}
+            key={item.id}
+        >
+            {item.label}
+        </TodoListItem>
+    ))
 
     return (
         <ul className={`${styles.list} ${className}`}>
