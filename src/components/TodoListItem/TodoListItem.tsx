@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren } from "react";
+import { ITodo } from "@/store/reducers/todoItems/types";
+import { useActions } from "@/hooks/useActions";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./TodoListItem.module.scss";
-import { ITodo } from "@/store/reducers/todoItems/types";
-import { useActions } from "@/hooks/useActions";
 
 interface TodoListItemProps {
     className?: string;

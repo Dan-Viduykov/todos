@@ -1,3 +1,5 @@
+@import '@/styles/main.scss';
+
 .form {
     display: flex;
     align-items: center;
@@ -5,15 +7,21 @@
 
 .input {
     margin-right: 8px;
-    padding: 4px 12px;
-    flex-grow: 1;
+    padding: 10px 20px;
     border: 1px solid gray;
     border-radius: 8px;
+    flex-grow: 1;
 }
 
 .button {
-    padding: 4px 12px;
+    padding: 10px 20px;
     background: transparent;
     border: 1px solid gray;
     border-radius: 8px;
+    transition: .2s;
+    font-weight: 700;
+
+    &:hover {
+        background: rgba($secondary-color, 0.5);
+    }
 }
