@@ -1,15 +1,8 @@
 @import '@/styles/main.scss';
 
-.wrap {
-    width: 100vw;
-    min-height: 100vh;
-    display: flex;
-}
-
 .container {
-    max-width: 600px;
-    width: 100%;
-    margin: auto;
+    max-width: 500px;
+    width: 500px;
 }
 
 .header {
