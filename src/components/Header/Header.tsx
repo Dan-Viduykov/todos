@@ -1,13 +1,16 @@
+import { ITodo } from "@/store/reducers/todoItems/types";
 import { FC } from "react";
 import styles from './Header.module.scss'
 
 interface HeaderProps {
     className?: string;
-    todo?: number;
-    done?: number;
+    todos: ITodo[]
 }
 
-const Header: FC<HeaderProps> = ({ todo = 0, done = 0, className }) => {
+const Header: FC<HeaderProps> = ({ className, todos }) => {
+    const todo = todos.filter(item => item.done === false).length;
+    const done = todos.filter(item => item.done === true).length;
+
     return (
         <header className={`${styles.header} ${className}`}>
             <h1 className={styles.title}>Todo List</h1>
