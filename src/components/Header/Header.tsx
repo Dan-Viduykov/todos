@@ -4,12 +4,12 @@ import styles from './Header.module.scss'
 
 interface HeaderProps {
     className?: string;
-    todos: ITodo[]
+    todos: ITodo[];
 }
 
 const Header: FC<HeaderProps> = ({ className, todos }) => {
     const todo = todos.filter(item => item.done === false).length;
-    const done = todos.filter(item => item.done === true).length;
+    const done = todos.filter(item => item.done).length;
 
     return (
         <header className={`${styles.header} ${className}`}>

@@ -17,7 +17,7 @@ const Home: FC = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.container}>
-                <Header className={styles.header} />
+                <Header className={styles.header} todos={items} />
                 <main className={styles.main}>
                     <div className={styles.searchBlock}>
                         <SearchPanel className={styles.searchInput} />
